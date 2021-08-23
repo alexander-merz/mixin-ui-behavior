@@ -8,6 +8,8 @@ export declare class IsToggleable {
 
 export interface CanToggle {
   toggle(): void;
+  isOn(): boolean;
+  isOff(): boolean;
 }
 
 const state = Symbol("toggle.state"); // acts as protected property
@@ -18,16 +20,24 @@ export function isToggleable<Base extends AnyConstructor>(
   return class extends base {
     #state: ToggleState = "off";
 
-    protected set [state](value: ToggleState) {
+    set [state](value: ToggleState) {
       this.#state = value;
     }
 
-    protected get [state]() {
+    get [state]() {
       return this.#state;
     }
 
     public toggle(): void {
-      this.state = this.state === "on" ? "off" : "on";
+      this.state = this[state] = this[state] === "on" ? "off" : "on";
+    }
+
+    public isOn(): boolean {
+      return this[state] === "on";
+    }
+
+    public isOff(): boolean {
+      return this[state] === "off";
     }
   };
 }

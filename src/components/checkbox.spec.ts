@@ -17,21 +17,15 @@ describe("Checkbox", () => {
     expect(checkbox.checked).toBeFalsy();
   });
 
-  it("should toggle state", () => {
-    checkbox.toggle();
+  it("should check", () => {
+    checkbox.check();
     expect(checkbox.checked).toBeTruthy();
   });
 
-  it("should not expose private state property", () => {
-    const typeAgnosticCheckbox = checkbox as any;
-    expect("#state" in typeAgnosticCheckbox).toBeFalsy();
-    expect(typeAgnosticCheckbox["#state"]).toBeUndefined();
-  });
-
-  it("should not expose state setter and getter due to Symbol", () => {
-    const typeAgnosticCheckbox = checkbox as any;
-    expect("state" in typeAgnosticCheckbox).toBeFalsy();
-    expect(typeAgnosticCheckbox.state).toBeUndefined();
-    expect(typeAgnosticCheckbox["state"]).toBeUndefined();
+  it("should uncheck", () => {
+    checkbox.check();
+    expect(checkbox.checked).toBeTruthy();
+    checkbox.uncheck();
+    expect(checkbox.checked).toBeFalsy();
   });
 });

@@ -13,8 +13,17 @@ describe("Logging Checkbox", () => {
 
   it("should log action to console", () => {
     jest.spyOn(console, "log");
+
     checkbox.toggle();
-    expect(checkbox.checked).toBeTruthy();
     expect(console.log).toHaveBeenCalledWith("toggle");
+    expect(checkbox.checked).toBeTruthy();
+
+    checkbox.uncheck();
+    expect(console.log).toHaveBeenCalledWith("uncheck");
+    expect(checkbox.checked).toBeFalsy();
+
+    checkbox.check();
+    expect(console.log).toHaveBeenCalledWith("check");
+    expect(checkbox.checked).toBeTruthy();
   });
 });
