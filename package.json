@@ -1,0 +1,33 @@
+{
+  "name": "ui-tils",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "TypeScript",
+    "Mixins",
+    "Private",
+    "Protected",
+    "Symbol"
+  ],
+  "author": "Alexander Merz",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/jest": "^27.0.1",
+    "babel-jest": "^27.0.6",
+    "jest": "^27.0.6",
+    "rimraf": "^3.0.2"
+  }
+}
