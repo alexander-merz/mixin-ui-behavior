@@ -1,26 +1,29 @@
+import { ToggleState } from "../../dist/index";
 import { Constructor } from "../base/constructor";
-import { CanToggle, IsToggleable } from "../common/toggleable";
+import { IsToggleable, state } from "../common/toggleable";
 
-export interface Checkbox extends IsToggleable, CanToggle {
+export interface Checkbox extends IsToggleable {
   checked: boolean;
   check(): void;
   uncheck(): void;
 }
 
-export function isCheckbox<Base extends Constructor<IsToggleable & CanToggle>>(
+export function isCheckbox<Base extends Constructor<IsToggleable>>(
   base: Base
 ): Base & Constructor<Checkbox> {
   return class extends base {
+    [state]: ToggleState = "off";
+
     public get checked() {
-      return this.state === "on";
+      return this[state] === "on";
     }
 
     public check(): void {
-      this.state = "on";
+      this[state] = "on";
     }
 
     public uncheck(): void {
-      this.state = "off";
+      this[state] = "off";
     }
   };
 }

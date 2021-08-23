@@ -6,8 +6,8 @@ beforeEach(() => {
   checkbox = new LoggingCheckbox();
 });
 
-describe("Logging Checkbox", () => {
-  it("should be instantiated", () => {
+describe("Logging checkbox", () => {
+  it("should be created", () => {
     expect(checkbox).toBeTruthy();
   });
 
@@ -15,15 +15,15 @@ describe("Logging Checkbox", () => {
     jest.spyOn(console, "log");
 
     checkbox.toggle();
-    expect(console.log).toHaveBeenCalledWith("toggle");
     expect(checkbox.checked).toBeTruthy();
+    expect(console.log).toHaveBeenCalledWith("toggle");
 
     checkbox.uncheck();
-    expect(console.log).toHaveBeenCalledWith("uncheck");
     expect(checkbox.checked).toBeFalsy();
+    expect(console.log).toHaveBeenCalledWith("uncheck");
 
     checkbox.check();
-    expect(console.log).toHaveBeenCalledWith("check");
     expect(checkbox.checked).toBeTruthy();
+    expect(console.log).toHaveBeenCalledWith("check");
   });
 });

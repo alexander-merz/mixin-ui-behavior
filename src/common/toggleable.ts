@@ -2,34 +2,22 @@ import { AnyConstructor, Constructor } from "../base/constructor";
 
 export type ToggleState = "on" | "off";
 
-export declare class IsToggleable {
-  protected state: ToggleState;
-}
-
-export interface CanToggle {
+export interface IsToggleable {
   toggle(): void;
   isOn(): boolean;
   isOff(): boolean;
 }
 
-const state = Symbol("toggle.state"); // acts as protected property
+export const state = Symbol("toggle.state");
 
 export function isToggleable<Base extends AnyConstructor>(
   base: Base
-): Base & Constructor<IsToggleable & CanToggle> {
+): Base & Constructor<IsToggleable> {
   return class extends base {
-    #state: ToggleState = "off";
-
-    set [state](value: ToggleState) {
-      this.#state = value;
-    }
-
-    get [state]() {
-      return this.#state;
-    }
+    [state]: ToggleState = "off";
 
     public toggle(): void {
-      this.state = this[state] = this[state] === "on" ? "off" : "on";
+      this[state] = this[state] === "on" ? "off" : "on";
     }
 
     public isOn(): boolean {
