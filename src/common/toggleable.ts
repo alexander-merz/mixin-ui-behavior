@@ -15,7 +15,7 @@ const state = Symbol("toggle.state"); // acts as protected property
 export function isToggleable<Base extends AnyConstructor>(
   base: Base
 ): Base & Constructor<IsToggleable & CanToggle> {
-  class IsToggleableClass extends base {
+  return class extends base {
     #state: ToggleState = "off";
 
     protected set [state](value: ToggleState) {
@@ -29,6 +29,5 @@ export function isToggleable<Base extends AnyConstructor>(
     public toggle(): void {
       this.state = this.state === "on" ? "off" : "on";
     }
-  }
-  return IsToggleableClass as Base & Constructor<IsToggleable & CanToggle>;
+  };
 }

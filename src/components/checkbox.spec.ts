@@ -1,11 +1,11 @@
-import { CanToggle, IsToggleable, isToggleable } from "../common/toggleable";
-import { ICheckbox, isCheckbox } from "./checkbox";
+import { isToggleable } from "../common/toggleable";
+import { Checkbox, isCheckbox } from "./checkbox";
 
-const Checkbox = isCheckbox(isToggleable(class {}));
-let checkbox: ICheckbox & IsToggleable & CanToggle;
+const CheckboxClass = isCheckbox(isToggleable(class {}));
+let checkbox: Checkbox;
 
 beforeEach(() => {
-  checkbox = new Checkbox();
+  checkbox = new CheckboxClass();
 });
 
 describe("Checkbox", () => {

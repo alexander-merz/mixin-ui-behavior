@@ -1,7 +1,7 @@
 import { Constructor } from "../base/constructor";
 import { CanToggle, IsToggleable } from "../common/toggleable";
 
-export interface ICheckbox {
+export interface Checkbox extends IsToggleable, CanToggle {
   checked: boolean;
   check(): void;
   uncheck(): void;
@@ -9,8 +9,8 @@ export interface ICheckbox {
 
 export function isCheckbox<Base extends Constructor<IsToggleable & CanToggle>>(
   base: Base
-): Base & Constructor<ICheckbox> {
-  class CheckboxClass extends base {
+): Base & Constructor<Checkbox> {
+  return class extends base {
     public get checked() {
       return this.state === "on";
     }
@@ -22,6 +22,5 @@ export function isCheckbox<Base extends Constructor<IsToggleable & CanToggle>>(
     public uncheck(): void {
       this.state = "off";
     }
-  }
-  return CheckboxClass as Base & Constructor<ICheckbox>;
+  };
 }
