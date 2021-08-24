@@ -22,17 +22,4 @@ describe("Toggleable behavior", () => {
     toggle.toggle();
     expect(toggle.isOff()).toBeTruthy();
   });
-
-  it("should not expose private state property", () => {
-    const typeAgnosticToggle = toggle as any;
-    expect("#state" in typeAgnosticToggle).toBeFalsy();
-    expect(typeAgnosticToggle["#state"]).toBeUndefined();
-  });
-
-  it("should not expose state setter and getter due to Symbol", () => {
-    const typeAgnosticToggle = toggle as any;
-    expect("state" in typeAgnosticToggle).toBeFalsy();
-    expect(typeAgnosticToggle.state).toBeUndefined();
-    expect(typeAgnosticToggle["state"]).toBeUndefined();
-  });
 });
