@@ -28,5 +28,9 @@ export function isCheckbox<Base extends Constructor<IsToggleable>>(
     public uncheck(): void {
       this.checked = false;
     }
+
+    public toggle() {
+      this.checked = !this.checked;
+    }
   };
 }
