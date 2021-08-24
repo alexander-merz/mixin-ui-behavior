@@ -17,10 +17,6 @@ export function isToggleable<Base extends AnyConstructor>(
   return class extends base {
     [state]: ToggleState = "off";
 
-    public get state() {
-      return this[state];
-    }
-
     public toggle(): void {
       this[state] = this[state] === "on" ? "off" : "on";
     }

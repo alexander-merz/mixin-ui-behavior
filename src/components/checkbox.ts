@@ -17,12 +17,16 @@ export function isCheckbox<Base extends Constructor<IsToggleable>>(
       return this[state] === "on";
     }
 
+    public set checked(value: boolean) {
+      this[state] = value ? "on" : "off";
+    }
+
     public check(): void {
-      this[state] = "on";
+      this.checked = true;
     }
 
     public uncheck(): void {
-      this[state] = "off";
+      this.checked = false;
     }
   };
 }
