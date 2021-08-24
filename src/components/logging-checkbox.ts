@@ -2,17 +2,17 @@ import { isToggleable } from "../common/toggleable";
 import { isCheckbox } from "./checkbox";
 
 export class LoggingCheckbox extends isCheckbox(isToggleable(class {})) {
-  public check() {
+  public check(): void {
     console.log("check");
     super.check();
   }
 
-  public toggle() {
+  public toggle(): void {
     console.log("toggle");
     super.toggle();
   }
 
-  public uncheck() {
+  public uncheck(): void {
     console.log("uncheck");
     super.uncheck();
   }

@@ -1,10 +1,10 @@
-import { CanToggle, IsToggleable, isToggleable } from "./toggleable";
+import { IsToggleable, isToggleable } from "./toggleable";
 
-const TestClass = isToggleable(class {});
-let toggle: IsToggleable & CanToggle;
+const ToggleableClass = isToggleable(class {});
+let toggle: IsToggleable;
 
 beforeEach(() => {
-  toggle = new TestClass();
+  toggle = new ToggleableClass();
 });
 
 describe("Toggleable behavior", () => {
